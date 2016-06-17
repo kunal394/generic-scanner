@@ -1,9 +1,9 @@
 ############################################
-# Docker build file providing an Image
-# exposing differents web app scan
-# in order to use the image as command line tools 
+# Docker build file providing an generic
+# scanner docker image in order to use the 
+# image as a command line tool.
 ############################################
-# Script use following best practices 
+# Script uses following best practices 
 # https://docs.docker.com/articles/dockerfile_best-practices
 ############################################
 
@@ -11,7 +11,7 @@
 FROM ubuntu:14.04
 MAINTAINER Kunal Singh <knlsingh394@gmail.com>
 ENV TERM linux
-LABEL version="1.0.0" description="Docker build file for providing a generic scanner docker image in order to use the image as command line tools"
+LABEL version="1.0.0" description="Docker build file for providing a generic scanner docker image in order to use the image as a command line tool."
 
 # Set the locale
 RUN locale-gen en_US.UTF-8  

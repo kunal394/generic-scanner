@@ -37,12 +37,12 @@ if [ "$#" -eq 0 ]; then
     echo "	nik => Nikto"
     echo "	zap => OWASP ZAP"
     echo "	nmap => Nmap"
-    echo "  fish => Skipfish" 
-    echo "  w3af => W3AF" 
-    echo "  pytbull => Pytbull" 
-    echo "  wapiti => Wapiti" 
-    echo "  sqlmap => Sqlmap" 
-    echo "  bash => BASH" 
+    echo "  	fish => Skipfish" 
+    echo "  	w3af => W3AF" 
+    echo "  	pytbull => Pytbull" 
+    echo "  	wapiti => Wapiti" 
+    echo "  	sqlmap => Sqlmap" 
+    echo "  	bash => BASH" 
     echo "	all => Run all scanners"
     exit 1
 fi

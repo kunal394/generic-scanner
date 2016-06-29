@@ -3,7 +3,7 @@
 # docker image exposing different web app scanners
 # in order to use the image as a command line tool 
 ##################################################
-# Script use following best practices 
+# Script uses following best practices 
 # https://docs.docker.com/articles/dockerfile_best-practices
 ############################################
 

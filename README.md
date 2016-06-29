@@ -15,31 +15,43 @@
 
 # How to pull the image
 
-The docker image name is **kunals/generic-scanner**.
-
-To pull the image use the following command: <code>docker pull kunals/generic-scanner</code>
+```bash 
+docker pull kunals/generic-scanner
+```
 
 # Run commands
 
 ## Nmap
-<code>./run.sh nmap {ip_address_of_the_target_website}</code>
+```bash
+./run.sh nmap {ip_address_of_the_target_website}
+```
 
 ## Nikto
-<code>./run.sh nik {the_target_website}</code>
+```bash
+./run.sh nik {the_target_website}
+```
 
 ## Skipfish
-<code>./run.sh fish {target_website}</code>
+```bash
+./run.sh fish {target_website}
+```
 
 ## Zap
-<code>./run.sh zap {target_website}</code>
+```bash
+./run.sh zap {target_website}
+```
 
 ## Sqlmap
-<code>./run.sh sqlmap {target_website}</code>
+```bash
+./run.sh sqlmap {target_website}
+```
 
 ## Wapiti
-<code>./run.sh wapiti {target_website}</code>
+```bash
+./run.sh wapiti {target_website}
+```
 
-Call syntax can be customized as per the user's needs in the run.sh file. Also the target website can be set using the <code>ip</code> variable in the run.sh file if the user needs to scan a particular website repeatedly and in that case there is no need to specify the website along with the command. For example a command like <code>./run.sh wapiti</code> would suffice to run wapiti in the latter case.
+Call syntax can be customized as per the user's needs in the run.sh file. Also the target website can be set using the <code>ip</code> variable in the run.sh file if the user needs to scan a particular website repeatedly and in that case there is no need to specify the website along with the command. For example a command like ```./run.sh wapiti``` would suffice to run wapiti in the latter case.
 
 # TODO
 

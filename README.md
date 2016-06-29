@@ -21,7 +21,25 @@ To pull the image use the following command: <code>docker pull kunals/generic-sc
 
 # Run commands
 
-Call syntax is in the run file and it is totally customizable as per the user's needs.
+## Nmap
+<code>./run.sh nmap {ip_address_of_the_target_website}</code>
+
+## Nikto
+<code>./run.sh nik {ip_address_of_the_target_website}</code>
+
+## Skipfish
+<code>./run.sh fish {ip_address_of_the_target_website}</code>
+
+## Zap
+<code>./run.sh zap {ip_address_of_the_target_website}</code>
+
+## Sqlmap
+<code>./run.sh sqlmap {ip_address_of_the_target_website}</code>
+
+## Wapiti
+<code>./run.sh wapiti {ip_address_of_the_target_website}</code>
+
+Call syntax can be customized as per the user's needs in the run.sh file. Also the ip address for the target website can be set using the <code>ip</code> variable in the run.sh file if the user needs to scan a particular website repeatedly.
 
 # TODO
 

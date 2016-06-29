@@ -1,5 +1,10 @@
 # Generic Web App Scanner
 
+[![MIT Licence](https://badges.frapsoft.com/os/mit/mit-175x39.png?v=103)](https://opensource.org/licenses/mit-license.php)
+[![Open Source Love](https://badges.frapsoft.com/os/v2/open-source-175x29.png?v=103)](https://github.com/ellerbrock/open-source-badge/)
+[![Generic Scanner](https://img.shields.io/badge/generic--scanner-Docker-red.svg?maxAge=123456789?link=https://github.com/kunal394/generic-scanner/?style=plastic)]()
+[![forthebadge](http://forthebadge.com/images/badges/uses-badges.svg)](http://forthebadge.com)
+
 [Docker](http://docs.docker.com) build file providing an [image](http://docs.docker.com/introduction/understanding-docker/#how-does-a-docker-image-work) containing the following vulnerability scanners:
  - nmap
  - nikto

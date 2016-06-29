@@ -61,7 +61,7 @@ case $scanner_id in
 	nmap "$@"
 	;;
     fish)
-    cd $FISH_HOME/skipfish-2.10b
+    cd $FISH_HOME
 	./skipfish -o ./out "$@"
 	;;
 	w3af) 
@@ -78,16 +78,6 @@ case $scanner_id in
 	;;
 	bash) 
 	/bin/bash
-	;;
-    all) 
-	perl $NIKTO_HOME/nikto.pl "$@"
-    bash $ZAP_HOME/zap.sh "$@"
-    nmap "$@"
-    cd $FISH_HOME/skipfish-2.10b && ./skipfish -o ./out "$@"
-    #$W3AF_HOME/w3af_console "$@"
-	#$BULL_HOME/pytbull "$@"
-    $SQLMAP_HOME/sqlmap.py "$@"
-    $WAPITI_HOME/bin/wapiti "$@"
 	;;
 	*) 
 	echo "Unknow Scanner ID !"

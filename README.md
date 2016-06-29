@@ -1,4 +1,4 @@
-# Objective
+# Generic Web App Scanner
 
 [Docker](http://docs.docker.com) build file providing an [image](http://docs.docker.com/introduction/understanding-docker/#how-does-a-docker-image-work) containing the following vulnerability scanners:
  - nmap
@@ -11,9 +11,13 @@
 
 # Image location
 
-A automated build has been defined on Docker forge in order to build and push image in [Docker Hub repository](https://hub.docker.com/r/kunals/generic-scanner/)
+[Docker Hub repository](https://hub.docker.com/r/kunals/generic-scanner/)
+
+# How to pull the image
 
 The docker image name is **kunals/generic-scanner**.
+
+To pull the image use the following command: <code>docker pull kunals/generic-scanner</code>
 
 # Run commands
 

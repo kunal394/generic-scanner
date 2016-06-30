@@ -56,7 +56,7 @@ docker pull kunals/generic-scanner
 ./run.sh wapiti {target_website}
 ```
 
-Call syntax can be customized as per the user's needs in the run.sh file. Also the target website can be set using the <code>ip</code> variable in the run.sh file if the user needs to scan a particular website repeatedly and in that case there is no need to specify the website along with the command. For example a command like ```./run.sh wapiti``` would suffice to run wapiti in the latter case.
+Call syntax can be customized as per the user's needs in the run.sh file. Also the target website can be set using the `ip` variable in the run.sh file if the user needs to scan a particular website repeatedly and in that case there is no need to specify the website along with the command. For example a command like ```./run.sh wapiti``` would suffice to run wapiti in the latter case.
 
 # TODO
 

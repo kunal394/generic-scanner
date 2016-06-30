@@ -28,12 +28,12 @@ docker pull kunals/generic-scanner
 
 ## Nmap
 ```bash
-./run.sh nmap {ip_address_of_the_target_website}
+./run.sh nmap {target_website}
 ```
 
 ## Nikto
 ```bash
-./run.sh nik {the_target_website}
+./run.sh nik {target_website}
 ```
 
 ## Skipfish

@@ -1,34 +1,8 @@
 #!/bin/bash
 
-#Command to display help:
-#docker run -v /tmp/scan_result:/tmp/scan_result:rw generic_scanner:test
-
-#Command to scan using Arachni:
-#docker run -v /tmp/scan_result:/tmp/scan_result:rw generic_scanner:test ARS http://webgoat:80 --report-save-path=/tmp/scan_result/scan_result.afr --check=xss
-#docker run -v /tmp/scan_result:/tmp/scan_result:rw generic_scanner:test ARR /tmp/scan_result/scan_result.afr --report=html:outfile=/tmp/scan_result.zip
-
-#Command to scan using Nikto:
-#docker run -v /tmp/scan_result:/tmp/scan_result:rw generic_scanner:test NIK -host http://webgoat:80 -F htm -output /tmp/scan_result/nikto-scan.html
-
-#Command to scan using Zap:
-#docker run -v /tmp/scan_result:/tmp/scan_result:rw generic_scanner:test ZAP -daemon -cmd -quickurl http://webgoat:80 -quickout /tmp/scan_result/zap-report.xml
-
-#Command to scan using Nmap:
-#docker run -v /tmp/scan_result:/tmp/scan_result:rw generic_scanner:test NMP -A -T4 http://webgoat:80 -v
-
-#Command to scan using Skipfish:
-#docker run -v /tmp/scan_result:/tmp/scan_result:rw generic_scanner:test FISH http://webgoat:80 -o output
-
-#Command to scan using W3AF:
-#docker run -v /tmp/scan_result:/tmp/scan_result:rw generic_scanner:test W3AF -s /tmp/scan_result/scan_script.w3af 
-
-#Command to spawn a shell inside the container:
-#docker run --rm=true -i -t generic_scanner:test BASH 
-
 ############################################
 # Image entry point to execute scanner
 ############################################
-#clear
 # Check input parameters
 if [ "$#" -eq 0 ]; then
     echo "Missing parameters !"

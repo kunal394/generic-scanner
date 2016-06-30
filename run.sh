@@ -1,32 +1,5 @@
 #!/bin/bash
 
-#Command to display help:
-#docker run --rm -v /tmp/scan_result:/tmp/scan_result:rw generic-scanner:test
-
-#Command to scan using Nikto:
-#docker run --rm -v /tmp/scan_result:/tmp/scan_result:rw generic-scanner:test NIK -host http://webgoat:80 -F htm -output /tmp/scan_result/nikto-scan.html
-
-#Command to scan using Zap:
-#docker run --rm -v /tmp/scan_result:/tmp/scan_result:rw generic-scanner:test ZAP -daemon -cmd -quickurl http://webgoat:80 -quickout /tmp/scan_result/zap-report.xml
-
-#Command to scan using Nmap:
-#docker run --rm -v /tmp/scan_result:/tmp/scan_result:rw generic-scanner:test NMP -A -T4 http://webgoat:80 -v
-
-#Command to scan using Skipfish:
-#docker run --rm -v /tmp/scan_result:/tmp/scan_result:rw generic-scanner:test FISH http://webgoat:80 -o output
-
-#Command to scan using W3AF:
-#docker run --rm -v /tmp/scan_result:/tmp/scan_result:rw generic-scanner:test W3AF -s /tmp/scan_result/scan_script.w3af 
-
-#Command to spawn a shell inside the container:
-#docker run --rm --rm=true -i -t generic-scanner:test BASH 
-
-############################################
-# Image entry point to execute scanner
-############################################
-#clear
-# Check input parameters
-
 ip="172.17.0.3"
 
 if [ "$#" -eq 0 ]; then

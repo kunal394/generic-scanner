@@ -37,16 +37,16 @@ echo "scanner:" $scanner_id
 shift
 case $scanner_id in 
 	nik) 
-	docker run --rm -t generic-scanner:latest nik -host $url #just pass url
+	docker run --rm -t kunals/generic-scanner:latest nik -host $url #just pass url
 	;;	
 	zap) 
-	docker run --rm -t generic-scanner:latest zap -daemon -cmd -quickurl $url #just pass url
+	docker run --rm -t kunals/generic-scanner:latest zap -daemon -cmd -quickurl $url #just pass url
 	;;
 	nmap) 
-	docker run --rm -t generic-scanner:latest nmap -A -T4 $nmap_url -v #just pass url
+	docker run --rm -t kunals/generic-scanner:latest nmap -A -T4 $nmap_url -v #just pass url
 	;;
     fish) 
-	docker run --rm -t generic-scanner:latest fish $url #just pass url
+	docker run --rm -t kunals/generic-scanner:latest fish $url #just pass url
 	;;
 	w3af) 
 	echo "under construction"
@@ -55,22 +55,22 @@ case $scanner_id in
 	echo "under construction"
 	;;
 	sqlmap) 
-	docker run --rm -t generic-scanner:latest sqlmap -u $sqlmap_url --batch --level=5 --risk=3 #just pass url
+	docker run --rm -t kunals/generic-scanner:latest sqlmap -u $sqlmap_url --batch --level=5 --risk=3 #just pass url
 	;;
 	wapiti) 
         #Start a scan against the localhost website, be verbose and use colours to highlight vulnerabilities:
-	docker run --rm -t generic-scanner:latest wapiti $url -v 2 -u  #just pass url
+	docker run --rm -t kunals/generic-scanner:latest wapiti $url -v 2 -u  #just pass url
 	;;
 	all) 
-	docker run --rm -d -t generic-scanner:latest nik -host $url
-	docker run --rm -d -t generic-scanner:latest zap -daemon -cmd -quickurl $url
-	docker run --rm -d -t generic-scanner:latest nmap -A -T4 $nmap_url -v
-	docker run --rm -d -t generic-scanner:latest fish $url
-	docker run --rm -d -t generic-scanner:latest sqlmap -u $sqlmap_url --batch --level=5 --risk=3 #just pass url
-	docker run --rm -d -t generic-scanner:latest wapiti $url -v 2 -u  #just pass url
+	docker run --rm -d -t kunals/generic-scanner:latest nik -host $url
+	docker run --rm -d -t kunals/generic-scanner:latest zap -daemon -cmd -quickurl $url
+	docker run --rm -d -t kunals/generic-scanner:latest nmap -A -T4 $nmap_url -v
+	docker run --rm -d -t kunals/generic-scanner:latest fish $url
+	docker run --rm -d -t kunals/generic-scanner:latest sqlmap -u $sqlmap_url --batch --level=5 --risk=3 #just pass url
+	docker run --rm -d -t kunals/generic-scanner:latest wapiti $url -v 2 -u  #just pass url
 	;;
 	bash)
-	docker run --rm -it generic-scanner:latest bash
+	docker run --rm -it kunals/generic-scanner:latest bash
 	;;
 	*) 
 	echo "Unknow Scanner ID !"

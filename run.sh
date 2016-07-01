@@ -13,7 +13,7 @@ if [ "$#" -eq 0 ]; then
     echo " 	lynis => Lynis" 
     echo "	nikto => Nikto"
     echo "	nmap => Nmap"
-    echo "  skipfish => Skipfish" 
+    echo "	skipfish => Skipfish" 
     echo " 	sqlmap => Sqlmap" 
     echo " 	wapiti => Wapiti" 
     echo "	zap => OWASP ZAP"

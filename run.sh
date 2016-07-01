@@ -10,6 +10,7 @@ if [ "$#" -eq 0 ]; then
     echo "Scanner ID:"
     echo "	all => Run all scanners"
     echo " 	bash => BASH" 
+    echo " 	lynis => Lynis" 
     echo "	nikto => Nikto"
     echo "	nmap => Nmap"
     echo "  skipfish => Skipfish" 
@@ -41,6 +42,7 @@ echo "scanner:" $scanner_id
 shift
 case $scanner_id in 
 	all) 
+	docker run -v /tmp/scan_results:/tmp/scan_results:rw --rm -t kunals/generic-scanner:latest lynis audit system -Q -c > /tmp/scan_results/lynis.log   #just pass url
 	docker run -v /tmp/scan_results:/tmp/scan_results:rw -d -t kunals/generic-scanner:latest nikto -host $url -C all -output=$output_dir/nikto.txt  #just pass url
 	docker run -v /tmp/scan_results:/tmp/scan_results:rw -d -t kunals/generic-scanner:latest nmap -A -T4 $nmap_url -v -oN $output_dir/nmap.log
 	docker run -v /tmp/scan_results:/tmp/scan_results:rw -d -t kunals/generic-scanner:latest skipfish -o $output_dir/skipfish $url
@@ -51,6 +53,9 @@ case $scanner_id in
 	bash)
 	docker run -v /tmp/scan_results:/tmp/scan_results:rw --rm -it kunals/generic-scanner:latest bash
 	;;
+	lynis) 
+	docker run -v /tmp/scan_results:/tmp/scan_results:rw --rm -t kunals/generic-scanner:latest lynis audit system -Q -c | tee /tmp/scan_results/lynis.log   #just pass url
+	;;	
 	nikto) 
 	docker run -v /tmp/scan_results:/tmp/scan_results:rw --rm -t kunals/generic-scanner:latest nikto -host $url -C all -output=$output_dir/nikto.txt  #just pass url
 	;;	

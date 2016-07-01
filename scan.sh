@@ -10,6 +10,7 @@ if [ "$#" -eq 0 ]; then
     echo "	[SCANNER_ID] [SCANNER_ARGS]"
     echo "Scanner ID:"
     echo " 	bash => BASH" 
+    echo " 	lynis => Lynis" 
     echo "	nikto => Nikto"
     echo "	nmap => Nmap"
     echo "  skipfish => Skipfish" 
@@ -28,6 +29,9 @@ case $scanner_id in
 	bash) 
 	/bin/bash
 	;;
+    lynis) 
+	$LYNIS_HOME/lynis "$@"
+	;;	
 	nikto) 
 	perl $NIKTO_HOME/nikto.pl "$@"
 	;;	

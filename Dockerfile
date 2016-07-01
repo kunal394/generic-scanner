@@ -18,22 +18,25 @@ RUN locale-gen en_US.UTF-8
 ENV LANG=en_US.UTF-8 \ 
     LANGUAGE=en_US:en \ 
     LC_ALL=en_US.UTF-8 \
+    LYNIS_HOME=/opt/lynis\
     NIKTO_HOME=/opt/nikto \
     FISH_HOME=/opt/skipfish \
-    ZAP_HOME=/opt/zap \
     SQLMAP_HOME=/opt/sqlmap \
     WAPITI_HOME=/opt/wapiti \
+    ZAP_HOME=/opt/zap \
     NIKTO_VERSION=2.1.5 \
     ZAP_VERSION=2.5.0 \
     FISH_VERSION=2.10b \
-    WAPITI_VERSION=2.3.0
+    WAPITI_VERSION=2.3.0 \
+    LYNIS_VERSION=2.2.0
 
 # Set environments for the scanners    
-RUN echo "NIKTO_HOME=$NIKTO_HOME" >> /etc/environment && \ 
-    echo "ZAP_HOME=$ZAP_HOME" >> /etc/environment && \ 
+RUN echo "LYNIS_HOME=$LYNIS_HOME" >> /etc/environment && \ 
+    echo "NIKTO_HOME=$NIKTO_HOME" >> /etc/environment && \ 
     echo "FISH_HOME=$FISH_HOME" >> /etc/environment && \
     echo "SQLMAP_HOME=$SQLMAP_HOME" >> /etc/environment && \
     echo "WAPITI_HOME=$WAPITI_HOME" >> /etc/environment && \
+    echo "ZAP_HOME=$ZAP_HOME" >> /etc/environment && \ 
     mkdir $NIKTO_HOME && \
     mkdir $ZAP_HOME && \
     mkdir $FISH_HOME && \
@@ -61,6 +64,12 @@ RUN apt-get update && \
     apt-get -y autoremove && \
     rm -rf /var/lib/apt/lists/*
 
+# Install lynis
+RUN wget -q -O /tmp/lynis.tgz http://cisofy.com/files/lynis-${LYNIS_VERSION}.tar.gz && \
+    tar -xzf /tmp/lynis.tgz -C /opt && \
+    chmod -R +x $LYNIS_HOME && \
+    rm -rf /tmp/lynis.tgz
+
 # Install nikto
 RUN wget -q -O /tmp/nikto.tgz http://www.cirt.net/nikto/nikto-${NIKTO_VERSION}.tar.gz && \
     tar --strip-components=1 -xzf /tmp/nikto.tgz -C $NIKTO_HOME && \
@@ -68,13 +77,6 @@ RUN wget -q -O /tmp/nikto.tgz http://www.cirt.net/nikto/nikto-${NIKTO_VERSION}.t
     perl $NIKTO_HOME/nikto.pl -update && \
     perl $NIKTO_HOME/nikto.pl -Version && \
     rm -rf /tmp/nikto.tgz
-
-# Install zap
-RUN wget -q -O /tmp/zap.tgz https://github.com/zaproxy/zaproxy/releases/download/${ZAP_VERSION}/ZAP_${ZAP_VERSION}_Linux.tar.gz && \
-    tar --strip-components=1 -xzf /tmp/zap.tgz -C $ZAP_HOME && \
-    chmod -R +x $ZAP_HOME && \
-    /bin/bash $ZAP_HOME/zap.sh -version && \
-    rm -rf /tmp/zap.tgz
 
 # Install skipfish
 RUN wget -q -O /tmp/skipfish.tgz https://skipfish.googlecode.com/files/skipfish-${FISH_VERSION}.tgz && \
@@ -97,6 +99,12 @@ RUN wget -q -O /tmp/wapiti.tgz http://netcologne.dl.sourceforge.net/project/wapi
     chmod -R +x $WAPITI_HOME && \
     rm -rf /tmp/wapiti.tgz
 
+# Install zap
+RUN wget -q -O /tmp/zap.tgz https://github.com/zaproxy/zaproxy/releases/download/${ZAP_VERSION}/ZAP_${ZAP_VERSION}_Linux.tar.gz && \
+    tar --strip-components=1 -xzf /tmp/zap.tgz -C $ZAP_HOME && \
+    chmod -R +x $ZAP_HOME && \
+    /bin/bash $ZAP_HOME/zap.sh -version && \
+    rm -rf /tmp/zap.tgz
 
 VOLUME $FISH_HOME
 COPY zap-aggressive-scan-policy.policy /root/.ZAP/policies/zap-aggressive-scan-policy.policy

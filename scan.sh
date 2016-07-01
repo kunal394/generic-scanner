@@ -30,7 +30,8 @@ case $scanner_id in
         /bin/bash
         ;;
     lynis) 
-        $LYNIS_HOME/lynis "$@"
+        cd $LYNIS_HOME
+        ./lynis "$@"
         ;;	
     nikto) 
         perl $NIKTO_HOME/nikto.pl "$@"

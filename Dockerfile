@@ -69,6 +69,7 @@ RUN apt-get update && \
 RUN wget -q -O /tmp/lynis.tgz http://cisofy.com/files/lynis-${LYNIS_VERSION}.tar.gz && \
     tar -xzf /tmp/lynis.tgz -C /opt && \
     chmod -R +x $LYNIS_HOME && \
+    chmod -R 640 $LYNIS_HOME/include && \
     rm -rf /tmp/lynis.tgz
 
 # Install nikto

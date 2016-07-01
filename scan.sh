@@ -9,51 +9,44 @@ if [ "$#" -eq 0 ]; then
     echo "Call syntax:"
     echo "	[SCANNER_ID] [SCANNER_ARGS]"
     echo "Scanner ID:"
-    echo "	nik => Nikto"
-    echo "	zap => OWASP ZAP"
+    echo " 	bash => BASH" 
+    echo "	nikto => Nikto"
     echo "	nmap => Nmap"
-    echo "  	fish => Skipfish" 
-    echo "  	w3af => W3AF" 
-    echo "  	bash => Spawn a shell"
-    echo "  	pytbull => PYTBULL"
-    echo "  	sqlmap => Sqlmap"
-    echo "  	wapiti => Sqlmap"
-    echo "	all => Run all scanners"
+    echo "  skipfish => Skipfish" 
+    echo " 	sqlmap => Sqlmap" 
+    echo " 	wapiti => Wapiti" 
+    echo "	zap => OWASP ZAP"
     exit 1
 fi
+
+output_dir="/tmp/scan_results"
+
 # Call scanner
 scanner_id=$1
 shift
 case $scanner_id in 
-	nik) 
+	bash) 
+	/bin/bash
+	;;
+	nikto) 
 	perl $NIKTO_HOME/nikto.pl "$@"
 	;;	
-	zap) 
-	bash $ZAP_HOME/zap.sh "$@"
-	;;
 	nmap) 
 	nmap "$@"
 	;;
-    fish)
+    skipfish)
+    rm -rf /tmp/scan_results/skipfish || true 
     cd $FISH_HOME
-	./skipfish -o ./out "$@"
-	;;
-	w3af) 
-	echo "under construction"
-	#$W3AF_HOME/w3af_console "$@"
-	;;
-	pytbull) 
-	echo "under construction"
-	#$BULL_HOME/pytbull "$@"
+	./skipfish "$@"
 	;;
 	sqlmap) 
 	$SQLMAP_HOME/sqlmap.py "$@"
 	;;
 	wapiti) 
-    	$WAPITI_HOME/bin/wapiti "$@"
+    $WAPITI_HOME/bin/wapiti "$@"
 	;;
-	bash) 
-	/bin/bash
+	zap) 
+	bash $ZAP_HOME/zap.sh "$@"
 	;;
 	*) 
 	echo "Unknow Scanner ID !"

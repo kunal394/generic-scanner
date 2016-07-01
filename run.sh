@@ -1,23 +1,27 @@
 #!/bin/bash
 
-ip="172.17.0.3"
+ip="172.17.0.2"
+output_dir="/tmp/scan_results"
 
 if [ "$#" -eq 0 ]; then
     echo "Missing parameters !"
     echo "Call syntax:"
     echo "	[SCANNER_ID] [SCANNER_ARGS]"
     echo "Scanner ID:"
-    echo "	nik => Nikto"
-    echo "	zap => OWASP ZAP"
-    echo "	nmap => Nmap"
-    echo "  	fish => Skipfish" 
-    echo "  	w3af => W3AF" 
-    echo "  	pytbull => Pytbull" 
-    echo "  	wapiti => Wapiti" 
-    echo "  	sqlmap => Sqlmap" 
-    echo "  	bash => BASH" 
     echo "	all => Run all scanners"
+    echo " 	bash => BASH" 
+    echo "	nikto => Nikto"
+    echo "	nmap => Nmap"
+    echo "  skipfish => Skipfish" 
+    echo " 	sqlmap => Sqlmap" 
+    echo " 	wapiti => Wapiti" 
+    echo "	zap => OWASP ZAP"
     exit 1
+fi
+
+if [ ! -d "$output_dir" ]
+then
+    mkdir -p $output_dir
 fi
 
 if [ $# -lt 2 ]
@@ -36,44 +40,37 @@ scanner_id=$1
 echo "scanner:" $scanner_id
 shift
 case $scanner_id in 
-	nik) 
-	docker run --rm -t kunals/generic-scanner:latest nik -host $url #just pass url
-	;;	
-	zap) 
-	docker run --rm -t kunals/generic-scanner:latest zap -daemon -cmd -quickurl $url #just pass url
-	;;
-	nmap) 
-	docker run --rm -t kunals/generic-scanner:latest nmap -A -T4 $nmap_url -v #just pass url
-	;;
-    fish) 
-	docker run --rm -t kunals/generic-scanner:latest fish $url #just pass url
-	;;
-	w3af) 
-	echo "under construction"
-	;;
-	pytbull) 
-	echo "under construction"
-	;;
-	sqlmap) 
-	docker run --rm -t kunals/generic-scanner:latest sqlmap -u $sqlmap_url --batch --level=5 --risk=3 #just pass url
-	;;
-	wapiti) 
-        #Start a scan against the localhost website, be verbose and use colours to highlight vulnerabilities:
-	docker run --rm -t kunals/generic-scanner:latest wapiti $url -v 2 -u  #just pass url
-	;;
 	all) 
-	docker run --rm -d -t kunals/generic-scanner:latest nik -host $url
-	docker run --rm -d -t kunals/generic-scanner:latest zap -daemon -cmd -quickurl $url
-	docker run --rm -d -t kunals/generic-scanner:latest nmap -A -T4 $nmap_url -v
-	docker run --rm -d -t kunals/generic-scanner:latest fish $url
-	docker run --rm -d -t kunals/generic-scanner:latest sqlmap -u $sqlmap_url --batch --level=5 --risk=3 #just pass url
-	docker run --rm -d -t kunals/generic-scanner:latest wapiti $url -v 2 -u  #just pass url
+	docker run -v /tmp/scan_results:/tmp/scan_results:rw -d -t kunals/generic-scanner:latest nikto -host $url -C all -output=$output_dir/nikto.txt  #just pass url
+	docker run -v /tmp/scan_results:/tmp/scan_results:rw -d -t kunals/generic-scanner:latest nmap -A -T4 $nmap_url -v -oN $output_dir/nmap.log
+	docker run -v /tmp/scan_results:/tmp/scan_results:rw -d -t kunals/generic-scanner:latest skipfish -o $output_dir/skipfish $url
+	docker run -v /tmp/scan_results:/tmp/scan_results:rw -d -t kunals/generic-scanner:latest sqlmap -u $sqlmap_url --batch --level=5 --risk=3 --output-dir=$output_dir/sqlmap  #just pass url
+	docker run -v /tmp/scan_results:/tmp/scan_results:rw -d -t kunals/generic-scanner:latest wapiti $url -v 2 -u -o $output_dir/wapiti  #just pass url
+	docker run -v /tmp/scan_results:/tmp/scan_results:rw -d -t kunals/generic-scanner:latest zap -daemon -cmd -quickurl $url -quickout $output_dir/zap
 	;;
 	bash)
-	docker run --rm -it kunals/generic-scanner:latest bash
+	docker run -v /tmp/scan_results:/tmp/scan_results:rw --rm -it kunals/generic-scanner:latest bash
+	;;
+	nikto) 
+	docker run -v /tmp/scan_results:/tmp/scan_results:rw --rm -t kunals/generic-scanner:latest nikto -host $url -C all -output=$output_dir/nikto.txt  #just pass url
+	;;	
+	nmap) 
+	docker run -v /tmp/scan_results:/tmp/scan_results:rw --rm -t kunals/generic-scanner:latest nmap -A -T4 $nmap_url -v -oN $output_dir/nmap.log
+	;;
+    skipfish) 
+	docker run -v /tmp/scan_results:/tmp/scan_results:rw --rm -t kunals/generic-scanner:latest skipfish -o $output_dir/skipfish $url
+	;;
+	sqlmap) 
+	docker run -v /tmp/scan_results:/tmp/scan_results:rw --rm -t kunals/generic-scanner:latest sqlmap -u $sqlmap_url --batch --level=5 --risk=3 --output-dir=$output_dir/sqlmap  #just pass url
+	;;
+	wapiti) 
+	docker run -v /tmp/scan_results:/tmp/scan_results:rw --rm -t kunals/generic-scanner:latest wapiti $url -v 2 -u -o $output_dir/wapiti  #just pass url
+	;;
+	zap) 
+	docker run -v /tmp/scan_results:/tmp/scan_results:rw --rm -t kunals/generic-scanner:latest zap -daemon -cmd -quickurl $url -quickout $output_dir/zap
 	;;
 	*) 
-	echo "Unknow Scanner ID !"
+	echo "Unknown Scanner ID !"
 	;;
 esac
 

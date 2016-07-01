@@ -26,34 +26,34 @@ output_dir="/tmp/scan_results"
 scanner_id=$1
 shift
 case $scanner_id in 
-	bash) 
-	/bin/bash
-	;;
+    bash) 
+        /bin/bash
+        ;;
     lynis) 
-	$LYNIS_HOME/lynis "$@"
-	;;	
-	nikto) 
-	perl $NIKTO_HOME/nikto.pl "$@"
-	;;	
-	nmap) 
-	nmap "$@"
-	;;
+        $LYNIS_HOME/lynis "$@"
+        ;;	
+    nikto) 
+        perl $NIKTO_HOME/nikto.pl "$@"
+        ;;	
+    nmap) 
+        nmap "$@"
+        ;;
     skipfish)
-    rm -rf /tmp/scan_results/skipfish || true 
-    cd $FISH_HOME
-	./skipfish "$@"
-	;;
-	sqlmap) 
-	$SQLMAP_HOME/sqlmap.py "$@"
-	;;
-	wapiti) 
-    $WAPITI_HOME/bin/wapiti "$@"
-	;;
-	zap) 
-	bash $ZAP_HOME/zap.sh "$@"
-	;;
-	*) 
-	echo "Unknow Scanner ID !"
-	;;
+        rm -rf /tmp/scan_results/skipfish || true 
+        cd $FISH_HOME
+        ./skipfish "$@"
+        ;;
+    sqlmap) 
+        $SQLMAP_HOME/sqlmap.py "$@"
+        ;;
+    wapiti) 
+        $WAPITI_HOME/bin/wapiti "$@"
+        ;;
+    zap) 
+        bash $ZAP_HOME/zap.sh "$@"
+        ;;
+    *) 
+        echo "Unknow Scanner ID !"
+        ;;
 esac
 

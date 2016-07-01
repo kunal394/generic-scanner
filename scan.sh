@@ -14,8 +14,8 @@ if [ "$#" -eq 0 ]; then
     echo "  nikto => Nikto"
     echo "  nmap => Nmap"
     echo "  skipfish => Skipfish" 
-    echo " 	sqlmap => Sqlmap" 
-    echo " 	wapiti => Wapiti" 
+    echo "  sqlmap => Sqlmap" 
+    echo "  wapiti => Wapiti" 
     echo "  zap => OWASP ZAP"
     exit 1
 fi

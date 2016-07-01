@@ -7,16 +7,16 @@
 if [ "$#" -eq 0 ]; then
     echo "Missing parameters !"
     echo "Call syntax:"
-    echo "	[SCANNER_ID] [SCANNER_ARGS]"
+    echo "  [SCANNER_ID] [SCANNER_ARGS]"
     echo "Scanner ID:"
-    echo " 	bash => BASH" 
-    echo " 	lynis => Lynis" 
-    echo "	nikto => Nikto"
-    echo "	nmap => Nmap"
+    echo "  bash => BASH" 
+    echo "  lynis => Lynis" 
+    echo "  nikto => Nikto"
+    echo "  nmap => Nmap"
     echo "  skipfish => Skipfish" 
     echo " 	sqlmap => Sqlmap" 
     echo " 	wapiti => Wapiti" 
-    echo "	zap => OWASP ZAP"
+    echo "  zap => OWASP ZAP"
     exit 1
 fi
 

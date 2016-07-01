@@ -6,12 +6,13 @@
 [![forthebadge](http://forthebadge.com/images/badges/uses-badges.svg)](http://forthebadge.com)
 
 [Docker](http://docs.docker.com) build file providing an [image](http://docs.docker.com/introduction/understanding-docker/#how-does-a-docker-image-work) containing the following vulnerability scanners:
- - nmap
- - nikto
- - skipfish
- - zap
- - sqlmap
- - wapiti
+   - lynis
+   - nikto
+   - nmap
+   - skipfish
+   - sqlmap
+   - wapiti
+   - zap
 
 
 # Image location
@@ -26,24 +27,24 @@ docker pull kunals/generic-scanner
 
 # Run commands
 
+## Lynis
+```bash
+./run.sh lynis
+```
+
+## Nikto
+```bash
+./run.sh nikto {target_website}
+```
+
 ## Nmap
 ```bash
 ./run.sh nmap {target_website}
 ```
 
-## Nikto
-```bash
-./run.sh nik {target_website}
-```
-
 ## Skipfish
 ```bash
-./run.sh fish {target_website}
-```
-
-## Zap
-```bash
-./run.sh zap {target_website}
+./run.sh skipfish {target_website}
 ```
 
 ## Sqlmap
@@ -54,6 +55,11 @@ docker pull kunals/generic-scanner
 ## Wapiti
 ```bash
 ./run.sh wapiti {target_website}
+```
+
+## Zap
+```bash
+./run.sh zap {target_website}
 ```
 
 Call syntax can be customized as per the user's needs in the run.sh file. Also the target website can be set using the `ip` variable in the run.sh file if the user needs to scan a particular website repeatedly and in that case there is no need to specify the website along with the command. For example a command like ```./run.sh wapiti``` would suffice to run wapiti in the latter case.

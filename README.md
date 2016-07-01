@@ -5,7 +5,7 @@
 [![Generic Scanner](https://img.shields.io/badge/generic--scanner-Docker-red.svg?maxAge=123456789?link=https://github.com/kunal394/generic-scanner/?style=plastic)]()
 [![forthebadge](http://forthebadge.com/images/badges/uses-badges.svg)](http://forthebadge.com)
 
-[Docker](http://docs.docker.com) build file providing an [image](http://docs.docker.com/introduction/understanding-docker/#how-does-a-docker-image-work) containing the following vulnerability scanners:
+[Docker](https://www.docker.com/) build file providing an [image](https://docs.docker.com/engine/tutorials/dockerimages/) containing the following vulnerability scanners:
    - lynis
    - nikto
    - nmap

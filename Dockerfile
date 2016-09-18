@@ -81,7 +81,7 @@ RUN wget -q -O /tmp/nikto.tgz http://www.cirt.net/nikto/nikto-${NIKTO_VERSION}.t
     rm -rf /tmp/nikto.tgz
 
 # Install skipfish
-RUN wget -q -O /tmp/skipfish.tgz https://skipfish.googlecode.com/files/skipfish-${FISH_VERSION}.tgz && \
+RUN wget -q -O /tmp/skipfish.tgz https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/skipfish/skipfish-2.10b.tgz && \
     tar --strip-components=1 -xzf /tmp/skipfish.tgz -C $FISH_HOME && \
     chmod -R +x $FISH_HOME && \
     cd $FISH_HOME && \
